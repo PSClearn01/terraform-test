@@ -1,13 +1,13 @@
 # Proxmox Terraform guests
 
-Creates LXC containers and VMs on one Proxmox node using the [`bpg/proxmox`](https://registry.terraform.io/providers/bpg/proxmox/latest/docs) provider.
+Clones LXC containers and VMs from existing Proxmox templates onto one Proxmox node using the [`bpg/proxmox`](https://registry.terraform.io/providers/bpg/proxmox/latest/docs) provider.
 
 ## Prerequisites
 
 - Terraform 1.5+ and connectivity to the Proxmox API.
 - A Proxmox API token with permissions to create/manage guests, storage content, and networking on the target node.
-- The LXC template referenced by each container already present in Proxmox storage.
-- An existing VM template with cloud-init enabled for every VM entry.
+- An existing **LXC container template** for every `lxc_containers` entry. Convert its source container with `pct template <vmid>`.
+- An existing **VM template** with cloud-init enabled for every `virtual_machines` entry.
 
 ## Use
 

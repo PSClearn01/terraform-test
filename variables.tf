@@ -26,21 +26,22 @@ variable "ssh_public_key" {
 }
 
 variable "lxc_containers" {
-  description = "LXC containers keyed by Terraform name. ip_address can be dhcp or a CIDR address (for example 10.10.10.21/24)."
+  description = "LXC containers cloned from existing Proxmox LXC templates, keyed by Terraform name. ip_address can be dhcp or a CIDR address."
   type = map(object({
-    vm_id         = number
-    hostname      = string
-    template      = string
-    datastore_id  = string
-    disk_size_gb  = number
-    cores         = number
-    memory_mb     = number
-    bridge        = string
-    ip_address    = string
-    gateway       = optional(string)
-    tags          = optional(list(string), [])
-    unprivileged  = optional(bool, true)
-    start_on_boot = optional(bool, true)
+    vm_id              = number
+    template_vm_id     = number
+    template_node_name = optional(string)
+    hostname           = string
+    datastore_id       = string
+    disk_size_gb       = number
+    cores              = number
+    memory_mb          = number
+    bridge             = string
+    ip_address         = string
+    gateway            = optional(string)
+    tags               = optional(list(string), [])
+    unprivileged       = optional(bool, true)
+    start_on_boot      = optional(bool, true)
   }))
   default = {}
 }

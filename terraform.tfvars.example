@@ -1,23 +1,23 @@
-proxmox_endpoint = "https://pve.example.internal:8006/api2/json"
+proxmox_endpoint = "https://pmx-4.purosurccd.com/api2/json"
 proxmox_insecure = false
-node_name        = "pve"
-ssh_public_key   = "ssh-ed25519 AAAA... admin@example"
+node_name        = "pmx-4"
+ssh_public_key   = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLniY7YxGRJpdvquofKsutVBW2+gWuILoARKGc95TsH pscadmin@purosurccd.com"
 
-# Download this template to the node first, for example:
-# pveam download local debian-12-standard_12.7-1_amd64.tar.zst
+# template_vm_id must refer to an existing LXC container template.
+# Optionally set template_node_name if the template lives on another node.
 lxc_containers = {
   dns = {
-    vm_id        = 201
-    hostname     = "dns"
-    template     = "local:vztmpl/debian-12-standard_12.7-1_amd64.tar.zst"
-    datastore_id = "local-lvm"
-    disk_size_gb = 8
-    cores        = 1
-    memory_mb    = 512
-    bridge       = "vmbr0"
-    ip_address   = "10.10.10.21/24"
-    gateway      = "10.10.10.1"
-    tags         = ["terraform", "lxc"]
+    vm_id          = 201
+    template_vm_id = 9001
+    hostname       = "dns"
+    datastore_id   = "local-lvm"
+    disk_size_gb   = 8
+    cores          = 1
+    memory_mb      = 512
+    bridge         = "vmbr0"
+    ip_address     = "10.10.10.21/24"
+    gateway        = "10.10.10.1"
+    tags           = ["terraform", "lxc"]
   }
 }
 

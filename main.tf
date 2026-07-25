@@ -23,9 +23,11 @@ resource "proxmox_virtual_environment_container" "lxc" {
     dedicated = each.value.memory_mb
   }
 
-  operating_system {
-    template_file_id = each.value.template
-    type             = "debian"
+  clone {
+    vm_id        = each.value.template_vm_id
+    node_name    = each.value.template_node_name
+    datastore_id = each.value.datastore_id
+    full         = true
   }
 
   disk {
